@@ -1,0 +1,17 @@
+<div  [formGroup]="grupo_" class="form-group" [ngClass]="{ 'has-error': (grupo_.get(nombre_).touched || grupo_.get(nombre_).dirty) && !grupo_.get(nombre_).valid }">
+    <label class="col-md-2 control-label" for='{{nombre_}}'>{{titulo_}}</label>
+        <div>
+            <textarea class="form-control" name='{{nombre_}}' type = "text" formControlName='{{fCN_}}'></textarea> 
+            <span class="help-block" *ngIf="(grupo_.get(nombre_).touched || grupo_.get(nombre_).dirty) && grupo_.get(nombre_).errors">
+                <span *ngIf="grupo_.get(nombre_).errors.required && req_">
+                    El campo {{titulo_}} es requerido
+                </span>
+                <span *ngIf="(grupo_.get(nombre_).errors.maxlength && grupo_.get(nombre_).value != '')">
+                    Debe de tener un valor máximo de {{caract_}} caracteres.
+                </span>
+                <span *ngIf="(grupo_.get(nombre_).errors.pattern && grupo_.get(nombre_).value != '')">
+                  {{rgx_}}
+                </span>
+            </span>
+        </div>
+    </div>

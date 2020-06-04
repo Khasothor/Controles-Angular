@@ -1,0 +1,52 @@
+<h1>Persona</h1>
+<form class="form-horizontal" novalidate
+      (ngSubmit)="save()" [formGroup]="grupo">
+  <fieldset>
+    
+    <app-texto [_fCN]="'nombre'" [_datosc] = "nombre"></app-texto>
+    <app-texto [_fCN]="'apellido'" [_datosc] = "apellido"></app-texto>
+    <app-area-texto [_fCN]="'descrip'" [_datosc] = "descrip"></app-area-texto>
+    <app-calendario [_fCN]="'fechaNac'" [_datosc] = "fechaNac"></app-calendario>
+    
+    Skills:
+    <div formArrayName="skills">
+      <div *ngFor="let skill of skills.controls; let i=index">
+        <div [formGroupName]="i">
+          {{i}}
+          <app-texto [_fCN]="'skill'" [_datosc] = "skill"></app-texto>
+          <app-texto [_fCN]="'exp'" [_datosc] = "exp"></app-texto>
+          
+
+          <button (click)="removeSkill(i)">Remove</button>
+        </div>
+      </div>
+      <p>
+        <button type="button" (click)="addSkills()">Add</button>
+      </p>
+    </div>
+    
+    <div class="form-group">
+      <div class="col-md-4 col-md-offset-2">
+        <span>
+          <button class="btn btn-primary"
+                  type="submit"
+                  [disabled]="!grupo.valid"
+                  >
+            Salvar
+          </button>
+          <button class="btn"
+                  type="button"
+                  [routerLink]='["/personas"]'>
+            Cancelar
+          </button>
+        </span>
+
+      </div>
+
+    </div>
+  </fieldset>
+</form>
+<!-- <form [formGroup]="skillsForm">
+  
+</form> -->
+
